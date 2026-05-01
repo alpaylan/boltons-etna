@@ -1,0 +1,13 @@
+diff --git a/boltons/cacheutils.py b/boltons/cacheutils.py
+index 856bf19..7904e7a 100644
+--- a/boltons/cacheutils.py
++++ b/boltons/cacheutils.py
+@@ -326,7 +326,7 @@ class LRI(dict):
+         cn = self.__class__.__name__
+         val_map = super().__repr__()
+         return ('%s(max_size=%r, on_miss=%r, values=%s)'
+-                % (cn, self.max_size, self.on_miss, val_map))
++                % (cn, self.on_miss, self.max_size, val_map))
+ 
+ 
+ class LRU(LRI):

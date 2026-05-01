@@ -51,3 +51,24 @@ nosetests.xml
 *.sw[op]
 
 .cache/
+
+# ETNA workload runtime artifacts
+etna/.venv/
+etna/.hypothesis/
+etna/.pytest_cache/
+etna/etna_runner.egg-info/
+etna/etna.log
+.hegel/
+progress.jsonl
+etna.log
+/.hegel
+/etna.log
+/progress.jsonl
+/.marauders
+/uv.lock
+/etna/.venv
+/etna/etna.log
+/etna/.hypothesis
+__pycache__/
+*.egg-info/
+.pytest_cache/

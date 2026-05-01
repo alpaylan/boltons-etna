@@ -1,0 +1,13 @@
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index c45612a..b718229 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -297,7 +297,7 @@ _IRR_S2P = {'addendum': 'addenda', 'alga': 'algae', 'alumna': 'alumnae',
+             'ox': 'oxen', 'paralysis': 'paralyses', 'parenthesis': 'parentheses',
+             'person': 'people', 'phenomenon': 'phenomena', 'potato': 'potatoes',
+             'radius': 'radii', 'scarf': 'scarves', 'scissors': 'scissors',
+-            'self': 'selves', 'sense': 'senses', 'series': 'series', 'sheep':
++            'self': 'selves', 'series': 'series', 'sheep':
+             'sheep', 'shelf': 'shelves', 'species': 'species', 'stimulus':
+             'stimuli', 'stratum': 'strata', 'syllabus': 'syllabi', 'symposium':
+             'symposia', 'synopsis': 'synopses', 'synthesis': 'syntheses',

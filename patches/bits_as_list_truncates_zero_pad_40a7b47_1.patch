@@ -1,0 +1,13 @@
+diff --git a/boltons/mathutils.py b/boltons/mathutils.py
+index 1367a54..f97565e 100644
+--- a/boltons/mathutils.py
++++ b/boltons/mathutils.py
+@@ -203,7 +203,7 @@ class Bits:
+         return hash(self.val)
+ 
+     def as_list(self):
+-        return [c == '1' for c in self.as_bin()]
++        return [c == '1' for c in '{0:b}'.format(self.val)]
+ 
+     def as_bin(self):
+         return f'{{0:0{self.len}b}}'.format(self.val)

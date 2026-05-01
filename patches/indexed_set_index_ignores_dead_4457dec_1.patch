@@ -1,0 +1,13 @@
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 3ed5ab3..ecb7bfd 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -462,7 +462,7 @@ class IndexedSet(MutableSet):
+     def index(self, val):
+         "index(val) -> get the index of a value, raises if not present"
+         try:
+-            return self._get_apparent_index(self.item_index_map[val])
++            return self.item_index_map[val]
+         except KeyError:
+             cn = self.__class__.__name__
+             raise ValueError(f'{val!r} is not in {cn}')

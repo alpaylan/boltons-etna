@@ -1,0 +1,15 @@
+diff --git a/boltons/dictutils.py b/boltons/dictutils.py
+index f913f29..d81d569 100644
+--- a/boltons/dictutils.py
++++ b/boltons/dictutils.py
+@@ -259,8 +259,8 @@ class OrderedMultiDict(dict):
+         information.
+         """
+         if not super().__contains__(k):
+-            self[k] = None if default is _MISSING else default
+-        return self[k]
++            self[k] = [] if default is _MISSING else [default]
++        return default
+ 
+     def copy(self):
+         "Return a shallow copy of the dictionary."

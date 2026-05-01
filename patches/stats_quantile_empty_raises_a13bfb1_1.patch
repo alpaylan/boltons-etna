@@ -1,0 +1,13 @@
+diff --git a/boltons/statsutils.py b/boltons/statsutils.py
+index 36a8223..3067075 100644
+--- a/boltons/statsutils.py
++++ b/boltons/statsutils.py
+@@ -472,8 +472,6 @@ class Stats:
+         q = float(q)
+         if not 0.0 <= q <= 1.0:
+             raise ValueError('expected q between 0.0 and 1.0, not %r' % q)
+-        elif not self.data:
+-            return self.default
+         return self._get_quantile(self._get_sorted_data(), q)
+ 
+     def get_zscore(self, value):

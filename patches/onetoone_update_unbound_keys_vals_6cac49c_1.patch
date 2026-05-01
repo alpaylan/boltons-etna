@@ -1,0 +1,12 @@
+diff --git a/boltons/dictutils.py b/boltons/dictutils.py
+index f913f29..2254243 100644
+--- a/boltons/dictutils.py
++++ b/boltons/dictutils.py
+@@ -871,7 +871,6 @@ class OneToOne(dict):
+         return self[key]
+ 
+     def update(self, dict_or_iterable, **kw):
+-        keys_vals = []
+         if isinstance(dict_or_iterable, dict):
+             for val in dict_or_iterable.values():
+                 hash(val)
