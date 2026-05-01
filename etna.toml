@@ -1,6 +1,7 @@
 name = "boltons"
 description = "Pure-Python utility belt — bug fixes mined from upstream history."
 language = "python"
+strategies = ["hypothesis", "crosshair"]
 crate = "boltons"
 base_commit = "207651ee6055aabd0d9cdeac2e00140cdc208d44"
 
