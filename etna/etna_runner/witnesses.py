@@ -42,8 +42,21 @@ def witness_indexed_set_index_after_removals_case_pop_one() -> PropertyResult:
     )
 
 
-def witness_singularize_senses_is_sense_case_basic() -> PropertyResult:
-    return properties.property_singularize_senses_is_sense(0)
+def witness_singularize_matches_english_vocabulary_case_senses() -> PropertyResult:
+    # 'senses' is the bug-trigger; under the patched _IRR_S2P (without the
+    # 'sense': 'senses' entry) singularize('senses') returns 'sens'.
+    return properties.property_singularize_matches_english_vocabulary(
+        ("senses", "sense")
+    )
+
+
+def witness_singularize_matches_english_vocabulary_case_analyses() -> PropertyResult:
+    # A second irregular plural that stays correct under both base and the
+    # patched tree — guards against accidentally over-fitting the property
+    # to a single input.
+    return properties.property_singularize_matches_english_vocabulary(
+        ("analyses", "analysis")
+    )
 
 
 def witness_omd_setdefault_returns_stored_case_basic() -> PropertyResult:

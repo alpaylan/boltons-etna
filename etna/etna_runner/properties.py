@@ -261,19 +261,70 @@ def property_indexed_set_index_after_removals(
 
 
 # ---------------------------------------------------------------------------
-# 7. SingularizeSensesIsSense (variant: singularize_senses_to_sens_d056712_1)
+# 7. SingularizeMatchesEnglishVocabulary (variant: singularize_senses_to_sens_d056712_1)
 # ---------------------------------------------------------------------------
-def property_singularize_senses_is_sense(args: int) -> PropertyResult:
-    """``singularize('senses')`` must produce ``'sense'`` (irregular case).
+# Hand-rolled English plural -> singular reference. Each pair is a real
+# English word whose singularization is unambiguous (mostly drawn from
+# boltons' own irregular-plural table, plus a few regulars that the
+# fallback algorithm handles correctly). This is the *model* against which
+# ``singularize`` is checked.
+SINGULARIZE_VOCABULARY: Tuple[Tuple[str, str], ...] = (
+    ("senses", "sense"),
+    ("analyses", "analysis"),
+    ("mice", "mouse"),
+    ("children", "child"),
+    ("feet", "foot"),
+    ("axes", "axis"),
+    ("crises", "crisis"),
+    ("hypotheses", "hypothesis"),
+    ("phenomena", "phenomenon"),
+    ("parentheses", "parenthesis"),
+    ("theses", "thesis"),
+    ("syntheses", "synthesis"),
+    ("cars", "car"),
+    ("rooms", "room"),
+    ("elves", "elf"),
+    ("chances", "chance"),
+    ("activities", "activity"),
+    ("men", "man"),
+    ("women", "woman"),
+    ("teeth", "tooth"),
+    ("geese", "goose"),
+)
 
-    Bug (d056712): without 'sense' → 'senses' in the irregular-pluralization
-    table, the algorithm strips the trailing 's' to produce 'sens'.
+
+def property_singularize_matches_english_vocabulary(
+    args: Tuple[str, str],
+) -> PropertyResult:
+    """``singularize(plural)`` must equal the hand-rolled reference singular
+    for every (plural, singular) pair drawn from a real English vocabulary.
+
+    Model: ``SINGULARIZE_VOCABULARY`` — a fixed dictionary of well-known
+    English plurals with their unambiguous singulars (irregulars from
+    boltons' own ``_IRR_S2P`` plus simple regular nouns where the fallback
+    'strip s' is correct).
+
+    Bug (d056712): removing ``'sense': 'senses'`` from ``_IRR_S2P`` (and
+    therefore ``'senses': 'sense'`` from ``_IRR_P2S``) makes
+    ``singularize('senses')`` fall through to the regular ``word[:-1]``
+    rule, returning 'sens'. Any property that exercises the 'senses' pair
+    (which the generator picks with positive probability) discovers this.
     """
-    _ = args
-    actual = singularize("senses")
-    if actual != "sense":
+    plural, expected = args
+    if (plural, expected) not in SINGULARIZE_VOCABULARY:
+        # Crosshair / the runner can only invoke this property with pairs
+        # the strategy hands us, but defensively reject anything else so
+        # the property stays a true model check.
+        return DISCARD
+    try:
+        actual = singularize(plural)
+    except Exception as e:  # noqa: BLE001
         return fail(
-            f"singularize('senses') = {actual!r}, expected 'sense'"
+            f"singularize({plural!r}) raised {type(e).__name__}: {e}"
+        )
+    if actual != expected:
+        return fail(
+            f"singularize({plural!r}) = {actual!r}, expected {expected!r}"
         )
     return PASS
 

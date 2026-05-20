@@ -44,22 +44,22 @@ Total mutations: 14
 
 ## Framework Coverage
 
-| Property | proptest | quickcheck | crabcheck | hegel |
-|----------|---------:|-----------:|----------:|------:|
-| `BarrelListSortPreservesElements` | ✓ | ✓ | ✓ | ✓ |
-| `BitsAsListLengthMatches` | ✓ | ✓ | ✓ | ✓ |
-| `Bytes2HumanIsRepeatable` | ✓ | ✓ | ✓ | ✓ |
-| `DaterangeInfiniteIterates` | ✓ | ✓ | ✓ | ✓ |
-| `DaterangeSameStartStopTerminates` | ✓ | ✓ | ✓ | ✓ |
-| `IndexedSetIndexAfterRemovals` | ✓ | ✓ | ✓ | ✓ |
-| `LruReprFieldOrder` | ✓ | ✓ | ✓ | ✓ |
-| `OmdEqHandlesNonIterable` | ✓ | ✓ | ✓ | ✓ |
-| `OmdSetdefaultReturnsStored` | ✓ | ✓ | ✓ | ✓ |
-| `OneToOneUpdateEmptyOk` | ✓ | ✓ | ✓ | ✓ |
-| `RemapPreservesSet` | ✓ | ✓ | ✓ | ✓ |
-| `SingularizeSensesIsSense` | ✓ | ✓ | ✓ | ✓ |
-| `StatsQuantileEmptyReturnsDefault` | ✓ | ✓ | ✓ | ✓ |
-| `TableToTextColumnsAlign` | ✓ | ✓ | ✓ | ✓ |
+| Property | hypothesis | crosshair |
+|----------|---------:|--------:|
+| `BarrelListSortPreservesElements` | ✓ | ✓ |
+| `BitsAsListLengthMatches` | ✓ | ✓ |
+| `Bytes2HumanIsRepeatable` | ✓ | ✓ |
+| `DaterangeInfiniteIterates` | ✓ | ✓ |
+| `DaterangeSameStartStopTerminates` | ✓ | ✓ |
+| `IndexedSetIndexAfterRemovals` | ✓ | ✓ |
+| `LruReprFieldOrder` | ✓ | ✓ |
+| `OmdEqHandlesNonIterable` | ✓ | ✓ |
+| `OmdSetdefaultReturnsStored` | ✓ | ✓ |
+| `OneToOneUpdateEmptyOk` | ✓ | ✓ |
+| `RemapPreservesSet` | ✓ | ✓ |
+| `SingularizeSensesIsSense` | ✓ | ✓ |
+| `StatsQuantileEmptyReturnsDefault` | ✓ | ✓ |
+| `TableToTextColumnsAlign` | ✓ | ✓ |
 
 ## Bug Details
 

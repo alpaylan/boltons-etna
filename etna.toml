@@ -206,13 +206,14 @@ patch = "patches/singularize_senses_to_sens_d056712_1.patch"
 
 [tasks.bug]
 short_name = "singularize_senses_to_sens"
-invariant = "``singularize('senses') == 'sense'``."
-how_triggered = "The mutation removes the ``'sense': 'senses'`` entry from ``_IRR_S2P``. The fallback algorithm strips the trailing 's' to give 'sens'."
+invariant = "For every (plural, singular) pair in a hand-rolled English-vocabulary model — irregulars from boltons' own ``_IRR_S2P`` plus a few simple regulars — ``singularize(plural) == singular``."
+how_triggered = "The mutation removes the ``'sense': 'senses'`` entry from ``_IRR_S2P`` (and so ``'senses': 'sense'`` from the auto-derived ``_IRR_P2S``). When the property's generator picks the ``('senses', 'sense')`` pair, the fallback algorithm strips the trailing 's' to give 'sens', failing the model check."
 
 [[tasks.tasks]]
-property = "SingularizeSensesIsSense"
+property = "SingularizeMatchesEnglishVocabulary"
 witnesses = [
-  { test_fn = "witness_singularize_senses_is_sense_case_basic", note = "Direct lookup against the irregular-plural table" },
+  { test_fn = "witness_singularize_matches_english_vocabulary_case_senses", note = "'senses' is the bug-trigger pair; patched singularize returns 'sens' instead of 'sense'" },
+  { test_fn = "witness_singularize_matches_english_vocabulary_case_analyses", note = "Second irregular plural that stays correct under both base and patched trees" },
 ]
 
 # ---------------------------------------------------------------------------

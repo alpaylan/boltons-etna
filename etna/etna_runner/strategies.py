@@ -1,9 +1,12 @@
 """Hypothesis strategies for the boltons ETNA workload.
 
 CrossHair-compatible: stick to ``st.integers``, ``st.text``, ``st.lists``,
-``st.tuples``, ``st.booleans`` — no custom ``@composite`` strategies.
+``st.tuples``, ``st.booleans``, ``st.sampled_from`` — no custom
+``@composite`` strategies.
 """
 from hypothesis import strategies as st
+
+from .properties import SINGULARIZE_VOCABULARY
 
 
 _INT = st.integers(min_value=-100, max_value=100)
@@ -54,8 +57,13 @@ def strategy_indexed_set_index_after_removals():
     )
 
 
-def strategy_singularize_senses_is_sense():
-    return st.integers(min_value=0, max_value=10)
+def strategy_singularize_matches_english_vocabulary():
+    # Sample over the hand-rolled (plural, singular) reference vocabulary so
+    # every draw is a real English plural with a known correct singular.
+    # The 'senses' pair is one of the entries; once Hypothesis or Crosshair
+    # picks it the bug-injected ``singularize`` returns 'sens' and the
+    # property fails.
+    return st.sampled_from(list(SINGULARIZE_VOCABULARY))
 
 
 def strategy_omd_setdefault_returns_stored():

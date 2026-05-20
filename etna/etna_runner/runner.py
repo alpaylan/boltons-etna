@@ -23,7 +23,7 @@ ALL_PROPERTIES = [
     "BitsAsListLengthMatches",
     "DaterangeSameStartStopTerminates",
     "IndexedSetIndexAfterRemovals",
-    "SingularizeSensesIsSense",
+    "SingularizeMatchesEnglishVocabulary",
     "OmdSetdefaultReturnsStored",
     "DaterangeInfiniteIterates",
     "Bytes2HumanIsRepeatable",
